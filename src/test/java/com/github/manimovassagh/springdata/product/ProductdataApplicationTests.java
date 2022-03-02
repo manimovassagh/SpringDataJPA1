@@ -1,13 +1,10 @@
 package com.github.manimovassagh.springdata.product;
 
-import java.util.Optional;
-
-import org.hibernate.annotations.common.util.impl.LoggerFactory;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
-import org.slf4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.annotation.DirtiesContext;
 
 import com.github.manimovassagh.springdata.product.entities.Product;
 import com.github.manimovassagh.springdata.product.repos.ProductRepository;
@@ -47,8 +44,19 @@ class ProductdataApplicationTests {
 	@Test
 	public void testUpdate() {
 		Product product = productRepository.findById(1).get();
-		
-		
+		product.setPrice(950.45);
+		productRepository.save(product);
+		Assertions.assertNotNull(product);
+		Assertions.assertEquals(950.45, product.getPrice());
 	}
+	
+	
+	
+//		@Test
+//		@DirtiesContext
+//		public void testDelete() {
+//		productRepository.deleteById(1);
+//		
+//	}
 
 }
