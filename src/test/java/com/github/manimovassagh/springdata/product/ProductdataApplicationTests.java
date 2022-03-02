@@ -4,7 +4,6 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.annotation.DirtiesContext;
 
 import com.github.manimovassagh.springdata.product.entities.Product;
 import com.github.manimovassagh.springdata.product.repos.ProductRepository;
@@ -50,13 +49,25 @@ class ProductdataApplicationTests {
 		Assertions.assertEquals(950.45, product.getPrice());
 	}
 	
+	@Test
+	public void testExistInRepoByID() {
+		boolean existsById = productRepository.existsById(1);
+		boolean existsById2 = productRepository.existsById(2);
+		Assertions.assertTrue(existsById);
+		Assertions.assertFalse(existsById2);
+	}
+	
+	@Test
+	public void testCount() {
+		long count = productRepository.count();
+		Assertions.assertEquals(1, count);
+	
+	}
 	
 	
-//		@Test
-//		@DirtiesContext
-//		public void testDelete() {
-//		productRepository.deleteById(1);
-//		
-//	}
+	@Test
+	public void testDelete() {
+	productRepository.deleteById(1);
+	}
 
 }
