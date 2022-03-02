@@ -16,12 +16,6 @@ public class Product {
 	private String desc;
 	private Double price;
 
-	public Product(int id, String name, String desc, Double price) {
-		this.id = id;
-		this.name = name;
-		this.desc = desc;
-		this.price = price;
-	}
 
 	public Product() {
 	}
